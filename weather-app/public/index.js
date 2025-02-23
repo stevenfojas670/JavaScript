@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const form = document.querySelector(".top-banner form")
 	const input = document.querySelector(".top-banner input")
 	const msg = document.querySelector(".top-banner .msg")
-	const list = document.querySelector(".ajax-section .cities")
+	const list = document.querySelector(".weather-section .cities")
 
 	form.addEventListener("submit", async (e) => {
 		e.preventDefault()
@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const formattedInput = formatString(inputVal)
 
-		const existingCity = document.querySelector(
-			`[data-location="${formattedInput}"]`
-		)
+		// const existingCity = document.querySelector(
+		// 	`[data-location="${formattedInput}"]`
+		// )
 
-		if (existingCity) {
-			msg.textContent = `⚠️ ${inputVal} is already displayed!`
-			return
-		}
+		// if (existingCity) {
+		// 	msg.textContent = `⚠️ ${inputVal} is already displayed!`
+		// 	return
+		// }
 
 		try {
 			const response = await fetch(`/api/weather?input=${inputVal}`)
@@ -64,19 +64,24 @@ document.addEventListener("DOMContentLoaded", () => {
 			li.setAttribute("data-location", locationID)
 
 			li.innerHTML = `
-			<h2 class="city-name" data-name="${name}">
-				<span>${name}</span>
-				<sup>${region}</sup>
-			</h2>
-			<div class="city-temp">
-				${Math.round(temp_f)}<sup>°F</sup>
+			<div class="card">
+				<div class="card-header">
+					<h2>
+						<span>${name}, ${region}</span>
+					</h2>
+				</div>
+				<div class="card-content">
+					<div class="city-temp">
+						${Math.round(temp_f)}<sup>°F</sup>
+					</div>
+					<figure>
+						<img class="city-icon" src="${icon}" alt="" />
+						<figcaption>${iconText}</figcaption>
+					</figure>
+				</div>
 			</div>
-			<figure>
-				<img class="city-icon" src="${icon}" alt="" />
-				<figcaption>${iconText}</figcaption>
-			</figure>
 			`
-			list.appendChild(li)
+			list.append(li)
 			msg.textContent = ""
 			input.value = ""
 		} catch (error) {}
