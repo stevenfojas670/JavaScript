@@ -12,10 +12,10 @@ Here is what I have planned to create so far:
 
 ## Instructions
 - To run `nodemon server.js`
-- To use the WeatherAPI, create an account at (weatherapi.com) and copy and paste your key into a .env file. Title your key WEATHERAPI_KEY.
+- To use the WeatherAPI, create an account at [weatherAPI](weatherapi.com) and copy and paste your key into a .env file. Title your key WEATHERAPI_KEY.
 
 ## Implementation
-- Uses (weatherapi.com API)
+- Uses [weatherAPI](weatherapi.com API)
 - Uses express.js for future scalability and more flexibility.
 - Uses nodemon for hot-reloading.
 - Uses routes to a weather controller to make the weather API requests.
