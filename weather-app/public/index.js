@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const form = document.querySelector(".top-banner form")
-	const input = document.querySelector(".top-banner input")
-	const msg = document.querySelector(".top-banner .msg")
-	const list = document.querySelector(".weather-section .cities")
+	const form = document.querySelector(".input-field form")
+	const input = document.querySelector(".input-field input")
+	const msg = document.querySelector(".input-field .msg")
+	const list = document.querySelector(".cities")
 
 	form.addEventListener("submit", async (e) => {
 		e.preventDefault()
@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const formattedInput = formatString(inputVal)
 
-		// const existingCity = document.querySelector(
-		// 	`[data-location="${formattedInput}"]`
-		// )
+		const existingCity = document.querySelector(
+			`[data-location="${formattedInput}"]`
+		)
 
-		// if (existingCity) {
-		// 	msg.textContent = `⚠️ ${inputVal} is already displayed!`
-		// 	return
-		// }
+		if (existingCity) {
+			msg.textContent = `⚠️ ${inputVal} is already displayed!`
+			return
+		}
 
 		try {
 			const response = await fetch(`/api/weather?input=${inputVal}`)
@@ -65,23 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			li.innerHTML = `
 			<div class="card">
-				<div class="card-header">
-					<h2>
-						<span>${name}, ${region}</span>
-					</h2>
-				</div>
 				<div class="card-content">
-					<div class="city-temp">
-						${Math.round(temp_f)}<sup>°F</sup>
-					</div>
-					<figure>
+					<div class="weather-image">
 						<img class="city-icon" src="${icon}" alt="" />
-						<figcaption>${iconText}</figcaption>
-					</figure>
+						<h2>${iconText}</h2>
+					</div>
+					<h2 class="city-temp">${Math.round(temp_f)}°F</h2>
+				</div>
+				<div class="card-header">
+					<h2 class="city-name">${name}, ${region}</h2>
 				</div>
 			</div>
 			`
-			list.append(li)
+			list.appendChild(li)
+			expandContainer()
 			msg.textContent = ""
 			input.value = ""
 		} catch (error) {}
@@ -96,4 +93,19 @@ function formatString(input) {
 function validateNameRegion(input) {
 	const pattern = /^[A-Za-z\s]+,\s*[A-Za-z\s]+$/ // Fixed regex format
 	return pattern.test(input)
+}
+
+function expandContainer() {
+	const container = document.querySelector(".cities")
+
+	if (container.children.length === 1) {
+		// Only show when first item is added
+		container.style.display = "flex" // Show the container
+		container.style.opacity = "0" // Start fully transparent
+		setTimeout(() => {
+			container.style.opacity = "1" // Fade in smoothly
+		}, 10)
+	}
+
+	container.style.height = container.scrollHeight + "px"
 }
