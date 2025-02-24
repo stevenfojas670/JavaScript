@@ -7,29 +7,23 @@
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<section class="top-banner">
-			<div class="container">
-				<h1 class="heading">Simple Weather App</h1>
+		<div class="container">
+			<div class="input-field">
 				<form>
 					<input type="text" placeholder="Search for a city" autofocus />
-					<button type="submit">SUBMIT</button>
-					<span class="msg"></span>
+					<button type="submit">S</button>
 				</form>
+				<span class="msg"></span>
 			</div>
-		</section>
-		<section class="ajax-section">
-			<div class="container">
-				<ul class="cities"></ul>
+			<ul class="cities"></ul>
+			<div>
+				<a href="https://www.weatherapi.com/" title="Free Weather API"
+					><img
+						src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
+						alt="Weather data by WeatherAPI.com"
+				/></a>
 			</div>
-		</section>
-		<span class="link-back">
-			<a href="https://www.weatherapi.com/" title="Free Weather API"
-				><img
-					src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
-					alt="Weather data by WeatherAPI.com"
-					border="0"
-			/></a>
-		</span>
+		</div>
 		<script src="index.js"></script>
 	</body>
 </html>

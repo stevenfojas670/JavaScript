@@ -1,3 +1,4 @@
 *.env
 /practice
 node_modules
+*/logs
