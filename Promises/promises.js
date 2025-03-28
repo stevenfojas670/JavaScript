@@ -104,12 +104,51 @@ async function fetchWithRetry(url, options, retries, baseDelay = 500) {
 	}
 }
 
-fetchWithRetry(
-	'http://localhost:3000/api/users',
-	{
-		method: 'get',
-	},
-	3
-)
-	.then((data) => console.log(`Fetch data: ${data}`))
-	.catch((error) => console.error(`Failed connection: ${error}`));
+// fetchWithRetry(
+// 	'http://localhost:3000/api/users',
+// 	{
+// 		method: 'get',
+// 	},
+// 	3
+// )
+// 	.then((data) => console.log(`Fetch data: ${data}`))
+// 	.catch((error) => console.error(`Failed connection: ${error}`));
+
+/**
+ * Problem 6. Promise Queue
+ * Write a function that runs an array of functions that return Promises, one
+ * at a time in sequenece (not parallel)
+ */
+
+function delayLog(message, ms) {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			console.log(message);
+			resolve(message);
+		}, ms);
+	});
+}
+
+const tasks = [
+	() => delayLog('Task 1', 1000),
+	() => delayLog('Task 2', 500),
+	() => delayLog('Task 3', 200),
+];
+
+// Output:
+// Task 1 (after 1s)
+// Task 2 (after 1.5s total)
+// Task 3 (after 1.7s total)
+
+async function SequentialRunner(tasks) {
+	const results = [];
+	for (const task of tasks) {
+		const result = await task();
+		results.push(result);
+	}
+	return results;
+}
+
+SequentialRunner(tasks).then((response) => {
+	console.log(`All tasks done ${response}`);
+});
