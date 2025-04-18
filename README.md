@@ -20,3 +20,6 @@ Here is what I have planned to create so far:
 - Uses nodemon for hot-reloading.
 - Uses routes to a weather controller to make the weather API requests.
 - Uses morgan for logging weatherAPI requests and API requests to the backend (Implemented by ChatGPT).
+
+![image](https://github.com/user-attachments/assets/34ec6444-e0d0-497c-a3b1-0373e1e64f7e)
+
