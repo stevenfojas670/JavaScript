@@ -23,3 +23,6 @@ Here is what I have planned to create so far:
 
 ![image](https://github.com/user-attachments/assets/34ec6444-e0d0-497c-a3b1-0373e1e64f7e)
 
+### Request Logging
+
+![image](https://github.com/user-attachments/assets/9e3c9b48-6684-4925-9c6b-a48bc282a6b9)
